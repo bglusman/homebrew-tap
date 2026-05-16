@@ -48,12 +48,13 @@ class Wardwright < Formula
 
   service do
     secret_key_base = etc/"wardwright/secret_key_base"
+    bind = ENV.fetch("WARDWRIGHT_BIND", "127.0.0.1:8787")
 
     run [opt_bin/"wardwright"]
     keep_alive true
     working_dir var/"lib/wardwright"
     environment_variables(
-      WARDWRIGHT_BIND: "127.0.0.1:8787",
+      WARDWRIGHT_BIND: bind,
       WARDWRIGHT_SECRET_KEY_BASE: secret_key_base.exist? ? secret_key_base.read.strip : "",
       PATH: "#{opt_bin}:#{HOMEBREW_PREFIX}/bin:/usr/bin:/bin:/usr/sbin:/sbin"
     )
@@ -67,6 +68,10 @@ class Wardwright < Formula
 
       Start it with:
         brew services start wardwright
+
+      To use a different bind address or port, set WARDWRIGHT_BIND when creating
+      or restarting the service:
+        WARDWRIGHT_BIND=127.0.0.1:8788 brew services restart wardwright
 
       The formula generates a stable Phoenix signing secret at:
         #{etc}/wardwright/secret_key_base
