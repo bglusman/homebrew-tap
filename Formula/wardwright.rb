@@ -8,7 +8,7 @@ class Wardwright < Formula
   desc "Synthetic model policy, routing, and governance workbench"
   homepage "https://github.com/bglusman/wardwright"
   version "0.0.1"
-  license "MIT"
+  license "Apache-2.0"
 
   on_macos do
     on_arm do
