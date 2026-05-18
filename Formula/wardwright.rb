@@ -7,28 +7,28 @@ require "securerandom"
 class Wardwright < Formula
   desc "Synthetic model policy, routing, and governance workbench"
   homepage "https://github.com/bglusman/wardwright"
-  version "0.0.4"
+  version "0.0.5"
   license "Apache-2.0"
 
   on_macos do
     on_arm do
-      url "https://github.com/bglusman/wardwright/releases/download/v0.0.4/wardwright-0.0.4-aarch64-apple-darwin.tar.gz"
-      sha256 "39ebbc690c7ecd2c1dd8b392294ef664e4a4b68cd7b0c0630311d36143c5593d"
+      url "https://github.com/bglusman/wardwright/releases/download/v0.0.5/wardwright-0.0.5-aarch64-apple-darwin.tar.gz"
+      sha256 "4fef12c582677fa228436ac0dfe1ad8614722dc2a69e588fb2ec5c32d39ea4cb"
     end
     on_intel do
-      url "https://github.com/bglusman/wardwright/releases/download/v0.0.4/wardwright-0.0.4-x86_64-apple-darwin.tar.gz"
-      sha256 "bd63b03552194942d2e441b1d1b936dab9067ad02dd4a5b45f9a671f21d91062"
+      url "https://github.com/bglusman/wardwright/releases/download/v0.0.5/wardwright-0.0.5-x86_64-apple-darwin.tar.gz"
+      sha256 "df3cb160ea8136435825f74582b0b646758569f1c5878e5791209010aab49dae"
     end
   end
 
   on_linux do
     on_arm do
-      url "https://github.com/bglusman/wardwright/releases/download/v0.0.4/wardwright-0.0.4-aarch64-unknown-linux-musl.tar.gz"
-      sha256 "59206c527ec46c7794459c4be3021ed099018f59fde298c669583c752086ee64"
+      url "https://github.com/bglusman/wardwright/releases/download/v0.0.5/wardwright-0.0.5-aarch64-unknown-linux-musl.tar.gz"
+      sha256 "c60a9bf44ea80cb23351d10d2357c062af728cfee8d3097a7dae313b6cedc36b"
     end
     on_intel do
-      url "https://github.com/bglusman/wardwright/releases/download/v0.0.4/wardwright-0.0.4-x86_64-unknown-linux-musl.tar.gz"
-      sha256 "f3d2d7c9760cd0c7747598c25e8e1ee938e22a4be71fca905c02902bcbff539e"
+      url "https://github.com/bglusman/wardwright/releases/download/v0.0.5/wardwright-0.0.5-x86_64-unknown-linux-musl.tar.gz"
+      sha256 "b8ee85923e09bd0b682018c94a66d8b0b1689495fa640a09a2f387e4f7f762c9"
     end
   end
 
@@ -42,18 +42,23 @@ class Wardwright < Formula
     (var/"log/wardwright").mkpath
 
     secret_key_base = etc/"wardwright/secret_key_base"
+    bind = etc/"wardwright/bind"
+
     secret_key_base.write("#{SecureRandom.base64(64)}\n") unless secret_key_base.exist?
     chmod 0600, secret_key_base
+    bind.write("127.0.0.1:8787\n") unless bind.exist?
   end
 
   service do
     secret_key_base = etc/"wardwright/secret_key_base"
+    bind = etc/"wardwright/bind"
+    bind_value = bind.exist? ? bind.read.strip : ""
 
     run [opt_bin/"wardwright", "serve"]
     keep_alive true
     working_dir var/"lib/wardwright"
     environment_variables(
-      WARDWRIGHT_BIND: "127.0.0.1:8787",
+      WARDWRIGHT_BIND: bind_value.empty? ? "127.0.0.1:8787" : bind_value,
       WARDWRIGHT_SECRET_KEY_BASE: secret_key_base.exist? ? secret_key_base.read.strip : "",
       PATH: "#{opt_bin}:#{HOMEBREW_PREFIX}/bin:/usr/bin:/bin:/usr/sbin:/sbin"
     )
@@ -67,6 +72,13 @@ class Wardwright < Formula
 
       Start it with:
         brew services start wardwright
+
+      To use a different bind address or port:
+        echo 127.0.0.1:8788 > #{etc}/wardwright/bind
+        brew services start wardwright
+
+      If the service is already running, restart it after changing the bind file:
+        brew services restart wardwright
 
       The formula generates a stable Phoenix signing secret at:
         #{etc}/wardwright/secret_key_base
