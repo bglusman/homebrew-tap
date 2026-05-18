@@ -7,28 +7,28 @@ require "securerandom"
 class Wardwright < Formula
   desc "Synthetic model policy, routing, and governance workbench"
   homepage "https://github.com/bglusman/wardwright"
-  version "0.0.3"
+  version "0.0.4"
   license "Apache-2.0"
 
   on_macos do
     on_arm do
-      url "https://github.com/bglusman/wardwright/releases/download/v0.0.3/wardwright-0.0.3-aarch64-apple-darwin.tar.gz"
-      sha256 "cd08ad8ac02f1071dd3aeca0a7e1bf0839ce2f8c72f86c0c1b29bab0bad27922"
+      url "https://github.com/bglusman/wardwright/releases/download/v0.0.4/wardwright-0.0.4-aarch64-apple-darwin.tar.gz"
+      sha256 "39ebbc690c7ecd2c1dd8b392294ef664e4a4b68cd7b0c0630311d36143c5593d"
     end
     on_intel do
-      url "https://github.com/bglusman/wardwright/releases/download/v0.0.3/wardwright-0.0.3-x86_64-apple-darwin.tar.gz"
-      sha256 "6821a1737aba4c4f979a4520cf8b065304dbe90e083178f1e2be25da250378e0"
+      url "https://github.com/bglusman/wardwright/releases/download/v0.0.4/wardwright-0.0.4-x86_64-apple-darwin.tar.gz"
+      sha256 "bd63b03552194942d2e441b1d1b936dab9067ad02dd4a5b45f9a671f21d91062"
     end
   end
 
   on_linux do
     on_arm do
-      url "https://github.com/bglusman/wardwright/releases/download/v0.0.3/wardwright-0.0.3-aarch64-unknown-linux-musl.tar.gz"
-      sha256 "bf9cf6b95e2e0a27bedf38698dce12ddd27be4e82581f65280c129ae3f729bed"
+      url "https://github.com/bglusman/wardwright/releases/download/v0.0.4/wardwright-0.0.4-aarch64-unknown-linux-musl.tar.gz"
+      sha256 "59206c527ec46c7794459c4be3021ed099018f59fde298c669583c752086ee64"
     end
     on_intel do
-      url "https://github.com/bglusman/wardwright/releases/download/v0.0.3/wardwright-0.0.3-x86_64-unknown-linux-musl.tar.gz"
-      sha256 "c2de578e78ba97d590e1a308b3942efa814fd04a99eb649102b7711ff87e18d4"
+      url "https://github.com/bglusman/wardwright/releases/download/v0.0.4/wardwright-0.0.4-x86_64-unknown-linux-musl.tar.gz"
+      sha256 "f3d2d7c9760cd0c7747598c25e8e1ee938e22a4be71fca905c02902bcbff539e"
     end
   end
 
@@ -49,7 +49,7 @@ class Wardwright < Formula
   service do
     secret_key_base = etc/"wardwright/secret_key_base"
 
-    run [opt_bin/"wardwright"]
+    run [opt_bin/"wardwright", "serve"]
     keep_alive true
     working_dir var/"lib/wardwright"
     environment_variables(
