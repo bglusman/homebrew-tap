@@ -7,28 +7,28 @@ require "securerandom"
 class Wardwright < Formula
   desc "Synthetic model policy, routing, and governance workbench"
   homepage "https://github.com/bglusman/wardwright"
-  version "0.0.8"
+  version "0.0.9"
   license "Apache-2.0"
 
   on_macos do
     on_arm do
-      url "https://github.com/bglusman/wardwright/releases/download/v0.0.8/wardwright-0.0.8-aarch64-apple-darwin.tar.gz"
-      sha256 "2e20c1daccfc7d1ab2702d921a63d624829b50f1e3994fb885c790f48c16c365"
+      url "https://github.com/bglusman/wardwright/releases/download/v0.0.9/wardwright-0.0.9-aarch64-apple-darwin.tar.gz"
+      sha256 "fcb66b5139d862f47f45714456e2a04ce0fd9ffe0985a11d4e665faefceb95bb"
     end
     on_intel do
-      url "https://github.com/bglusman/wardwright/releases/download/v0.0.8/wardwright-0.0.8-x86_64-apple-darwin.tar.gz"
-      sha256 "35bdc433e6955a3181dadd111a98427e8f1dcd3d5a7b6ada6e7aad5c0d851804"
+      url "https://github.com/bglusman/wardwright/releases/download/v0.0.9/wardwright-0.0.9-x86_64-apple-darwin.tar.gz"
+      sha256 "0715d3fa7a6a2541bbb239f7ef36aa26c790ae52637d0d497c2c0ac8063bbc52"
     end
   end
 
   on_linux do
     on_arm do
-      url "https://github.com/bglusman/wardwright/releases/download/v0.0.8/wardwright-0.0.8-aarch64-unknown-linux-musl.tar.gz"
-      sha256 "2eaa6fb9dc3b07650d82037f87eee1fea0073e79a185feaccbe3d6636fad9b47"
+      url "https://github.com/bglusman/wardwright/releases/download/v0.0.9/wardwright-0.0.9-aarch64-unknown-linux-musl.tar.gz"
+      sha256 "4b4d2ae4bf10cb04ef82e0f675c997e8fa0f7dbb4dd4455533edff942f34d084"
     end
     on_intel do
-      url "https://github.com/bglusman/wardwright/releases/download/v0.0.8/wardwright-0.0.8-x86_64-unknown-linux-musl.tar.gz"
-      sha256 "3f50ea64b53ee1410d5fb6a2ba67cc7da9e7399b734d173e2dc1da32da00c902"
+      url "https://github.com/bglusman/wardwright/releases/download/v0.0.9/wardwright-0.0.9-x86_64-unknown-linux-musl.tar.gz"
+      sha256 "7f4d1b3d2e624eba1067991b97f1ac9802f81471d1d775366ddaff6c07302198"
     end
   end
 
