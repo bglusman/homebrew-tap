@@ -7,28 +7,28 @@ require "securerandom"
 class Wardwright < Formula
   desc "Synthetic model policy, routing, and governance workbench"
   homepage "https://github.com/bglusman/wardwright"
-  version "0.0.9"
+  version "0.0.10"
   license "Apache-2.0"
 
   on_macos do
     on_arm do
-      url "https://github.com/bglusman/wardwright/releases/download/v0.0.9/wardwright-0.0.9-aarch64-apple-darwin.tar.gz"
-      sha256 "fcb66b5139d862f47f45714456e2a04ce0fd9ffe0985a11d4e665faefceb95bb"
+      url "https://github.com/bglusman/wardwright/releases/download/v0.0.10/wardwright-0.0.10-aarch64-apple-darwin.tar.gz"
+      sha256 "85a246c4040a72ea71cf59232464384a68932b618e904ea9248251b69d9395d4"
     end
     on_intel do
-      url "https://github.com/bglusman/wardwright/releases/download/v0.0.9/wardwright-0.0.9-x86_64-apple-darwin.tar.gz"
-      sha256 "0715d3fa7a6a2541bbb239f7ef36aa26c790ae52637d0d497c2c0ac8063bbc52"
+      url "https://github.com/bglusman/wardwright/releases/download/v0.0.10/wardwright-0.0.10-x86_64-apple-darwin.tar.gz"
+      sha256 "c3e9208806b77feeac7939dcaa061d08af42fea14be5ca37f01b5b97607d77c6"
     end
   end
 
   on_linux do
     on_arm do
-      url "https://github.com/bglusman/wardwright/releases/download/v0.0.9/wardwright-0.0.9-aarch64-unknown-linux-musl.tar.gz"
-      sha256 "4b4d2ae4bf10cb04ef82e0f675c997e8fa0f7dbb4dd4455533edff942f34d084"
+      url "https://github.com/bglusman/wardwright/releases/download/v0.0.10/wardwright-0.0.10-aarch64-unknown-linux-musl.tar.gz"
+      sha256 "c5cbad102e9554a6f9330e7718459758789f52c4d481b41f1bfd2e8e23652e13"
     end
     on_intel do
-      url "https://github.com/bglusman/wardwright/releases/download/v0.0.9/wardwright-0.0.9-x86_64-unknown-linux-musl.tar.gz"
-      sha256 "7f4d1b3d2e624eba1067991b97f1ac9802f81471d1d775366ddaff6c07302198"
+      url "https://github.com/bglusman/wardwright/releases/download/v0.0.10/wardwright-0.0.10-x86_64-unknown-linux-musl.tar.gz"
+      sha256 "144ed3901ebb249497ca0341a7c38244f3817c5c95e96042f0d566531b070653"
     end
   end
 
